@@ -1,14 +1,10 @@
-# NSFW Data Scraper
+# SFS Data Scraper
 
 ## Disclaimer: the data is noisy - do not use to train a production model
 
 ## Description
 
 This is a set of scripts that allows for an automatic collection of _tens of thousands_ of images for the following (loosely defined) categories to be later used for training an image classifier:
-- `porn` - pornography images
-- `hentai` - hentai images, but also includes pornographic drawings
-- `sexy` - sexually explicit images, but not pornography. Think nude photos, playboy, bikini, etc.
-- `neutral` - safe for work neutral images of everyday things and people
 - `drawings` - safe for work drawings (including anime)
 
 Here is what each script (located under `scripts` directory) does:
@@ -45,36 +41,5 @@ $ bash 1_get_urls.sh # has already been run
 $ find ../raw_data -name "urls_*.txt" -exec sh -c "echo Number of URLs in {}: ; cat {} | wc -l" \;
 Number of URLs in ../raw_data/drawings/urls_drawings.txt:
    25732
-Number of URLs in ../raw_data/hentai/urls_hentai.txt:
-   45228
-Number of URLs in ../raw_data/neutral/urls_neutral.txt:
-   20960
-Number of URLs in ../raw_data/sexy/urls_sexy.txt:
-   19554
-Number of URLs in ../raw_data/porn/urls_porn.txt:
-  116521
-$ bash 2_download_from_urls.sh
 $ bash 3_optional_download_drawings.sh # optional
-$ bash 4_optional_download_neutral.sh # optional
-$ bash 5_create_train.sh
-$ bash 6_create_test.sh
-$ cd ../data
-$ ls train
-drawings hentai neutral porn sexy
-$ ls test
-drawings hentai neutral porn sexy
 ```
-
-I was able to train a CNN classifier to 91% accuracy with the following confusion matrix:
-![alt text](confusion_matrix.png)
-
-As expected,  `anime` and `hentai` are confused with each other more frequently than with other classes.
-
-Same with `porn` and `sexy` categories.
-
-Note: `anime` category was later renamed to `drawings`
-
-## Download Trained Models
-This repo provides you with the data. To train or download a trained model you can access both here:
-
-#### https://github.com/GantMan/nsfw_model

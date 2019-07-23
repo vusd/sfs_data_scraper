@@ -5,11 +5,7 @@ base_dir="$(dirname "$scripts_dir")"
 raw_data_dir="$base_dir/raw_data"
 
 declare -a class_names=(
-	"neutral"
 	"drawings"
-	"sexy"
-	"porn"
-	"hentai"
 	)
 
 for cname in "${class_names[@]}"
